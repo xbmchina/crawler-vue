@@ -1,19 +1,24 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <drawer-tab />
+    <search-form />
+    <content-tab />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import SearchForm from "./components/SearchForm.vue";
+import ContentTab from "./components/ContentTab.vue";
+import DrawerTab from "./components/DrawerTab.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    SearchForm,
+    ContentTab,
+    DrawerTab,
+  },
+};
 </script>
 
 <style>
