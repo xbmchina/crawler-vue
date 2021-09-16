@@ -8,7 +8,7 @@ module.exports = {
       https: false,
       proxy: {
         '/api': {
-          target: 'http://localhost:8889/',
+          target: 'https://xbmcloud.cn/',
           ws: true,
           changeOrigin: true,
           pathRewrite: {

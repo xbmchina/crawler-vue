@@ -9,7 +9,9 @@
           <el-tab-pane label="新闻资讯">
             <article-news />
           </el-tab-pane>
-          <el-tab-pane label="技术文章">技术文章</el-tab-pane>
+          <el-tab-pane label="技术文章">
+            <technical-news />
+          </el-tab-pane>
         </el-tabs>
       </el-col>
     </el-row>
@@ -18,12 +20,14 @@
 <script>
 import ToolKitTab from "./ToolKitTab.vue";
 import ArticleNews from "./ArticleNews.vue";
+import TechnicalNews from "./TechnicalNews.vue";
 
 export default {
   name: "ContentTab",
   components: {
     ToolKitTab,
     ArticleNews,
+    TechnicalNews,
   },
   data() {
     return {};

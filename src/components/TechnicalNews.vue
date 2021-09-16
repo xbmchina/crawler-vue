@@ -16,7 +16,7 @@
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item
-              :command="item.id"
+              :command="handleItemCommand(item.id, article.id)"
               v-for="item in favoritesList"
               :key="item.id"
             >
@@ -40,7 +40,7 @@
 </template>
 <script>
 export default {
-  name: "ArticleNews",
+  name: "TechnicalNews",
   mounted() {
     this.getAllFavorites();
     this.getAllArticles(this.currentPage, this.pageSize, this.sourceIds);
@@ -80,7 +80,25 @@ export default {
       rows.splice(index, 1);
     },
     handleCommand(command) {
-      this.$message("click on item " + command);
+      console.log(command);
+      this.axios
+        .put("/api/article-favorite/add", {
+          articleId: command.aid,
+          favoriteId: command.fid,
+        })
+        .then((response) => {
+          console.log(response);
+          this.$message({
+            message: response,
+            type: "success",
+          });
+        });
+    },
+    handleItemCommand(fid, aid) {
+      return {
+        fid: fid,
+        aid: aid,
+      };
     },
   },
   data() {
@@ -89,7 +107,7 @@ export default {
       articleList: [],
       currentPage: 1,
       pageSize: 10,
-      sourceIds: "1,2",
+      sourceIds: "3,4,5,6,7,8",
       total: 0,
     };
   },
@@ -97,16 +115,16 @@ export default {
 </script>
 
 <style>
- .el-row {
-    margin-bottom: 20px;
-    &:last-child {
-      margin-bottom: 0;
-    }
+.el-row {
+  margin-bottom: 20px;
+  &:last-child {
+    margin-bottom: 0;
   }
-  .el-col {
-    border-radius: 4px;
-    text-align: left;
-  }
+}
+.el-col {
+  border-radius: 4px;
+  text-align: left;
+}
 .el-dropdown-link {
   cursor: pointer;
   color: #409eff;
