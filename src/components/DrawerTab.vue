@@ -1,8 +1,8 @@
 <template>
-  <div class="stock-content">
+  <div>
     <el-row type="flex" class="row-bg" justify="end">
       <el-col :span="4">
-        <el-button @click="drawer = true" icon="el-icon-setting" circle>
+        <el-button class="btn-setting" @click="drawer = true" icon="el-icon-setting" circle>
         </el-button>
         <el-drawer :visible.sync="drawer" :with-header="false">
           <stock-tab />
@@ -33,4 +33,7 @@ export default {
 </script>
 
 <style>
+.btn-setting{
+  margin-top: 1%;
+}
 </style>

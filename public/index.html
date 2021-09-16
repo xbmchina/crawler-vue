@@ -1,17 +1,37 @@
 <!DOCTYPE html>
 <html lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
+</head>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: PingFang SC,Microsoft Yahei,Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    overflow: hidden;
+    -moz-user-select: none;
+    user-select: none;
+    box-sizing: border-box;
+  }
+</style>
+
+<body style="--search-height:38px; --search-width:405px; --search-margin-top:-47px; --search-margin-bottom:29px; --search-ratio:0.65; --icon-box-width:567px; --icon-box-height:296px; --icon-one-height:148px; --icon-width:64px; --mini-icon-padding:13px; --icon-ratio:0.61; --icon-font-size:15px; --icon-row:2; --icon-col:5; --icon-radius:50%; --icon-font-color:rgb(221, 221, 221); --icon-opacity:1; --icon-visible:visible; --search-radius:0.5; --search-opacity:1; --top-bar-height:0px; --icon-padding-top:0px; --main-icons-margin:85px; --search-btn-bgcolor:#00ce6d; --wallpaper-alpha:0.4; --wallpaper-filter:0px; --side-ratio:1; --main-ratio:1;">
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+        Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+
 </html>

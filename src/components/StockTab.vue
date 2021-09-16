@@ -67,7 +67,7 @@ export default {
 
 <style>
 .stock-content {
-  margin-top: 1%;
+  /* margin-top: 1%; */
 }
 .el-table .warning-row {
   background: rgb(234, 245, 234);

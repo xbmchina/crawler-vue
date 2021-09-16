@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <background-tab/>
     <drawer-tab />
     <search-form />
     <content-tab />
@@ -10,6 +11,7 @@
 import SearchForm from "./components/SearchForm.vue";
 import ContentTab from "./components/ContentTab.vue";
 import DrawerTab from "./components/DrawerTab.vue";
+import BackgroundTab from "./components/BackgroundTab.vue";
 
 export default {
   name: "App",
@@ -17,6 +19,7 @@ export default {
     SearchForm,
     ContentTab,
     DrawerTab,
+    BackgroundTab,
   },
 };
 </script>
@@ -28,6 +31,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /* margin-top: 60px; */
 }
 </style>
