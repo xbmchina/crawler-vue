@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row type="flex" class="row-bg" justify="end">
-        <el-col :span="1" class="btn-setting">
+        <el-col :span="1">
           <el-button  @click="drawer = true" icon="el-icon-setting" circle>
           </el-button>
         </el-col>
