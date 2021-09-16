@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row v-for="article in articleList" :key="article.id">
-      <el-col :span="18">
+      <el-col :span="20">
         <el-link :href="article.sourceUrl" target="_blank">
           <span>{{ article.title }}</span> <span>【{{ article.sort }}】</span>
         </el-link>
@@ -9,7 +9,7 @@
       <el-col :span="2">
         <el-link>删除</el-link>
       </el-col>
-      <el-col :span="4">
+      <el-col :span="2">
         <el-dropdown @command="handleCommand">
           <span class="el-dropdown-link">
             收藏<i class="el-icon-arrow-down el-icon--right"></i>

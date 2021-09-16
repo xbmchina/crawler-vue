@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row v-for="article in articleList" :key="article.id">
-      <el-col :span="18">
+      <el-col :span="20">
         <el-link :href="article.sourceUrl" target="_blank">
           <span>{{ article.title }}</span> <span>【{{ article.sort }}】</span>
         </el-link>
@@ -9,14 +9,14 @@
       <el-col :span="2">
         <el-link>删除</el-link>
       </el-col>
-      <el-col :span="4">
+      <el-col :span="2">
         <el-dropdown @command="handleCommand">
           <span class="el-dropdown-link">
             收藏<i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item
-              :command="item.id"
+              :command="handleItemCommand(item.id, article.id)"
               v-for="item in favoritesList"
               :key="item.id"
             >
@@ -80,7 +80,25 @@ export default {
       rows.splice(index, 1);
     },
     handleCommand(command) {
-      this.$message("click on item " + command);
+      console.log(command);
+      this.axios
+        .put("/api/article-favorite/add", {
+          articleId: command.aid,
+          favoriteId: command.fid,
+        })
+        .then((response) => {
+          console.log(response);
+          this.$message({
+            message: response,
+            type: "success",
+          });
+        });
+    },
+    handleItemCommand(fid, aid) {
+      return {
+        fid: fid,
+        aid: aid,
+      };
     },
   },
   data() {
