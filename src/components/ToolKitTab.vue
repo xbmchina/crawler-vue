@@ -20,85 +20,24 @@
 <script>
 export default {
   name: "ToolKitTab",
+  mounted() {
+    this.getAllToolKit();
+  },
   methods: {
     handleClick(row) {
       console.log(row);
+    },
+    getAllToolKit() {
+      this.axios.get("/api/toolkit/list-all").then((response) => {
+        this.toolList = response.data.data;
+        console.log(response.data.data);
+      });
     },
   },
   data() {
     return {
       imgUrl: "",
       toolList: [
-        {
-          url: "https://github.com/",
-          icon: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
-          name: "GiHub",
-        },
-        {
-          url: "https://github.com/",
-          icon: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
-          name: "GiHub",
-        },
-        {
-          url: "https://github.com/",
-          icon: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
-          name: "GiHub",
-        },
-        {
-          url: "https://github.com/",
-          icon: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
-          name: "GiHub",
-        },
-        {
-          url: "https://github.com/",
-          icon: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
-          name: "GiHub",
-        },
-        {
-          url: "https://github.com/",
-          icon: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
-          name: "GiHub",
-        },
-        {
-          url: "https://github.com/",
-          icon: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
-          name: "GiHub",
-        },
-        {
-          url: "https://github.com/",
-          icon: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
-          name: "GiHub",
-        },
-        {
-          url: "https://github.com/",
-          icon: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
-          name: "GiHub",
-        },
-        {
-          url: "https://github.com/",
-          icon: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
-          name: "GiHub",
-        },
-        {
-          url: "https://github.com/",
-          icon: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
-          name: "GiHub",
-        },
-        {
-          url: "https://github.com/",
-          icon: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
-          name: "GiHub",
-        },
-        {
-          url: "https://github.com/",
-          icon: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
-          name: "GiHub",
-        },
-        {
-          url: "https://github.com/",
-          icon: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
-          name: "GiHub",
-        },
         {
           url: "https://github.com/",
           icon: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",

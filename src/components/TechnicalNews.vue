@@ -75,23 +75,28 @@ export default {
           console.log(response.data.data.list);
         });
     },
-
-    deleteRow(index, rows) {
-      rows.splice(index, 1);
-    },
     handleCommand(command) {
-      console.log(command);
       this.axios
         .put("/api/article-favorite/add", {
           articleId: command.aid,
           favoriteId: command.fid,
         })
         .then((response) => {
-          console.log(response);
-          this.$message({
-            message: response,
-            type: "success",
-          });
+          console.log(response.data);
+          if (response.data.code === 200) {
+            this.$message({
+              message: "添加成功",
+              type: "success",
+            });
+            this.currentPage = 1;
+            this.getAllArticles(
+              this.currentPage,
+              this.pageSize,
+              this.sourceIds
+            );
+          } else {
+            this.$message.error("添加失败");
+          }
         });
     },
     handleItemCommand(fid, aid) {

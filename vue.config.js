@@ -8,7 +8,7 @@ module.exports = {
       https: false,
       proxy: {
         '/api': {
-          target: 'https://xbmcloud.cn/',
+          target: process.env.VUE_APP_URL,
           ws: true,
           changeOrigin: true,
           pathRewrite: {

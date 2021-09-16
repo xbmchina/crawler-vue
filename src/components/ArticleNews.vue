@@ -7,7 +7,7 @@
         </el-link>
       </el-col>
       <el-col :span="2">
-        <el-link>删除</el-link>
+        <el-link @click="handleDel(article.id)">删除</el-link>
       </el-col>
       <el-col :span="2">
         <el-dropdown @command="handleCommand">
@@ -46,6 +46,29 @@ export default {
     this.getAllArticles(this.currentPage, this.pageSize, this.sourceIds);
   },
   methods: {
+    handleDel(aid) {
+        this.axios
+        .put("/api/article/delById", {
+          id: aid,
+        })
+        .then((response) => {
+          console.log(response.data);
+          if (response.data.code === 200) {
+            this.$message({
+              message: "操作成功",
+              type: "success",
+            });
+            this.currentPage = 1;
+            this.getAllArticles(
+              this.currentPage,
+              this.pageSize,
+              this.sourceIds
+            );
+          } else {
+            this.$message.error("操作失败");
+          }
+        });
+    },
     handleSizeChange(val) {
       this.pageSize = val;
       this.getAllArticles(this.currentPage, this.pageSize, this.sourceIds);
@@ -75,23 +98,28 @@ export default {
           console.log(response.data.data.list);
         });
     },
-
-    deleteRow(index, rows) {
-      rows.splice(index, 1);
-    },
     handleCommand(command) {
-      console.log(command);
       this.axios
         .put("/api/article-favorite/add", {
           articleId: command.aid,
           favoriteId: command.fid,
         })
         .then((response) => {
-          console.log(response);
-          this.$message({
-            message: response,
-            type: "success",
-          });
+          console.log(response.data);
+          if (response.data.code === 200) {
+            this.$message({
+              message: "添加成功",
+              type: "success",
+            });
+            this.currentPage = 1;
+            this.getAllArticles(
+              this.currentPage,
+              this.pageSize,
+              this.sourceIds
+            );
+          } else {
+            this.$message.error("添加失败");
+          }
         });
     },
     handleItemCommand(fid, aid) {
@@ -115,16 +143,16 @@ export default {
 </script>
 
 <style>
- .el-row {
-    margin-bottom: 20px;
-    &:last-child {
-      margin-bottom: 0;
-    }
+.el-row {
+  margin-bottom: 20px;
+  &:last-child {
+    margin-bottom: 0;
   }
-  .el-col {
-    border-radius: 4px;
-    text-align: left;
-  }
+}
+.el-col {
+  border-radius: 4px;
+  text-align: left;
+}
 .el-dropdown-link {
   cursor: pointer;
   color: #409eff;

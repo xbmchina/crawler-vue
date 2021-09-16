@@ -9,10 +9,10 @@
           :row-class-name="tableRowClassName"
         >
           <el-table-column prop="name" label="名称"> </el-table-column>
-          <el-table-column prop="price" label="当前价格"> </el-table-column>
+          <el-table-column prop="sellPrice" label="当前价格"> </el-table-column>
           <el-table-column prop="ratio" label="涨幅"></el-table-column>
           <el-table-column prop="remark" label="备注"> </el-table-column>
-          <el-table-column fixed="right" label="操作" width="100">
+          <!-- <el-table-column fixed="right" label="操作" width="100">
             <template slot-scope="scope">
               <el-button
                 @click="handleClick(scope.row)"
@@ -22,7 +22,7 @@
               >
               <el-button type="text" size="small">编辑</el-button>
             </template>
-          </el-table-column>
+          </el-table-column> -->
         </el-table>
       </el-col>
     </el-row>
@@ -31,9 +31,12 @@
 <script>
 export default {
   name: "StockTab",
+  mounted() {
+    this.getAllStockList();
+  },
   methods: {
     tableRowClassName({ rowIndex }) {
-      let ratioStr = this.stockList[rowIndex].ratio.replaceAll("%", "");
+      let ratioStr = this.stockList[rowIndex].ratio;
       let ratio = parseFloat(ratioStr);
       if (ratio > 0) {
         return "success-row";
@@ -43,23 +46,16 @@ export default {
     handleClick(row) {
       console.log(row);
     },
+    getAllStockList() {
+      this.axios.get("/api/stock-config/list-all").then((response) => {
+        this.stockList = response.data.data;
+        console.log("stock="+response.data.data);
+      });
+    },
   },
   data() {
     return {
-      stockList: [
-        {
-          name: "海尔智家(sh600690)",
-          price: "28.58",
-          ratio: "-0.76 %",
-          remark: "可买入",
-        },
-        {
-          name: "美的集团(sz000333)",
-          price: "73.02",
-          ratio: "1.25 %",
-          remark: "可卖出",
-        },
-      ],
+      stockList: [],
     };
   },
 };
