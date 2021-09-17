@@ -29,6 +29,8 @@
   </div>
 </template>
 <script>
+import { listAllStock } from "@/api/stock";
+
 export default {
   name: "StockTab",
   mounted() {
@@ -47,9 +49,9 @@ export default {
       console.log(row);
     },
     getAllStockList() {
-      this.axios.get("/api/stock-config/list-all").then((response) => {
-        this.stockList = response.data.data;
-        console.log("stock="+response.data.data);
+      listAllStock().then((response) => {
+        console.log("stock=" + response.data);
+        this.stockList = response.data;
       });
     },
   },

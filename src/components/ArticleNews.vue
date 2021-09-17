@@ -29,7 +29,7 @@
     <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
-      :current-page.sync="currentPage"
+      :current-page.sync="pageNum"
       :page-sizes="[10, 30, 50]"
       :page-size="10"
       layout="total, sizes, prev, pager, next"
@@ -39,88 +39,79 @@
   </div>
 </template>
 <script>
+import {
+  listArticles,
+  listAllFavorites,
+  addFavorite,
+  delArticle,
+} from "@/api/article";
+
 export default {
   name: "ArticleNews",
   mounted() {
     this.getAllFavorites();
-    this.getAllArticles(this.currentPage, this.pageSize, this.sourceIds);
+    this.getAllArticles(this.pageNum, this.pageSize, this.sourceIds);
   },
   methods: {
     handleDel(aid) {
-        this.axios
-        .put("/api/article/delById", {
-          id: aid,
-        })
-        .then((response) => {
-          console.log(response.data);
-          if (response.data.code === 200) {
-            this.$message({
-              message: "操作成功",
-              type: "success",
-            });
-            this.currentPage = 1;
-            this.getAllArticles(
-              this.currentPage,
-              this.pageSize,
-              this.sourceIds
-            );
-          } else {
-            this.$message.error("操作失败");
-          }
-        });
+      delArticle({
+        id: aid,
+      }).then((response) => {
+        console.log(response);
+        if (response.code === 200) {
+          this.$message({
+            message: "操作成功",
+            type: "success",
+          });
+          this.pageNum = 1;
+          this.getAllArticles(this.pageNum, this.pageSize, this.sourceIds);
+        } else {
+          this.$message.error("操作失败");
+        }
+      });
     },
     handleSizeChange(val) {
       this.pageSize = val;
-      this.getAllArticles(this.currentPage, this.pageSize, this.sourceIds);
+      this.getAllArticles(this.pageNum, this.pageSize, this.sourceIds);
     },
     handleCurrentChange(val) {
-      this.currentPage = val;
-      this.getAllArticles(this.currentPage, this.pageSize, this.sourceIds);
+      this.pageNum = val;
+      this.getAllArticles(this.pageNum, this.pageSize, this.sourceIds);
     },
     getAllFavorites() {
-      this.axios.get("/api/sys-favorites/list-all").then((response) => {
+      listAllFavorites().then((response) => {
+        console.log(response);
         this.favoritesList = response.data;
       });
     },
-    getAllArticles(currentPage, pageSize, sourceIds) {
-      this.axios
-        .get(
-          "/api/article/list-all?pageNum=" +
-            currentPage +
-            "&pageSize=" +
-            pageSize +
-            "&sourceIds=" +
-            sourceIds
-        )
-        .then((response) => {
-          this.articleList = response.data.data.list;
-          this.total = response.data.data.total;
-          console.log(response.data.data.list);
-        });
+    getAllArticles(pageNum, pageSize, sourceIds) {
+      listArticles({
+        pageNum,
+        pageSize,
+        sourceIds,
+      }).then((response) => {
+        console.log(response.data.list);
+        this.articleList = response.data.list;
+        this.total = response.data.total;
+      });
     },
     handleCommand(command) {
-      this.axios
-        .put("/api/article-favorite/add", {
-          articleId: command.aid,
-          favoriteId: command.fid,
-        })
-        .then((response) => {
-          console.log(response.data);
-          if (response.data.code === 200) {
-            this.$message({
-              message: "添加成功",
-              type: "success",
-            });
-            this.currentPage = 1;
-            this.getAllArticles(
-              this.currentPage,
-              this.pageSize,
-              this.sourceIds
-            );
-          } else {
-            this.$message.error("添加失败");
-          }
-        });
+      addFavorite({
+        articleId: command.aid,
+        favoriteId: command.fid,
+      }).then((response) => {
+        console.log(response);
+        if (response.code === 200) {
+          this.$message({
+            message: "添加成功",
+            type: "success",
+          });
+          this.pageNum = 1;
+          this.getAllArticles(this.pageNum, this.pageSize, this.sourceIds);
+        } else {
+          this.$message.error("添加失败");
+        }
+      });
     },
     handleItemCommand(fid, aid) {
       return {
@@ -133,7 +124,7 @@ export default {
     return {
       favoritesList: [],
       articleList: [],
-      currentPage: 1,
+      pageNum: 1,
       pageSize: 10,
       sourceIds: "1,2",
       total: 0,

@@ -18,6 +18,8 @@
   </div>
 </template>
 <script>
+import { listAllToolkit } from "@/api/toolkit";
+
 export default {
   name: "ToolKitTab",
   mounted() {
@@ -28,9 +30,9 @@ export default {
       console.log(row);
     },
     getAllToolKit() {
-      this.axios.get("/api/toolkit/list-all").then((response) => {
-        this.toolList = response.data.data;
-        console.log(response.data.data);
+      listAllToolkit().then((response) => {
+        console.log(response);
+        this.toolList = response.data;
       });
     },
   },
