@@ -82,7 +82,7 @@ export default {
         //实现化WebSocket对象，指定要连接的服务器地址与端口  建立连接
         //等同于socket = new WebSocket("ws://localhost:8888/xxxx/im/25");
         //var socketUrl="${request.contextPath}/im/"+$("#userId").val();
-        var socketUrl = "http://localhost:8889/stockws/" + this.userId;
+        var socketUrl = process.env.VUE_APP_BASE_API+"/stockws/" + this.userId;
         socketUrl = socketUrl.replace("https", "ws").replace("http", "ws");
         console.log(socketUrl);
         if (this.socket != null) {
