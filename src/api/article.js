@@ -24,6 +24,14 @@ export function addFavorite(data) {
   })
 }
 
+export function delFavorite(data) {
+  return request({
+    url: '/crawler/article-favorite/del',
+    method: 'delete',
+    data
+  })
+}
+
 export function delArticle(data) {
   return request({
     url: '/crawler/article/delById',
@@ -32,3 +40,11 @@ export function delArticle(data) {
   })
 }
 
+export function listQuintessence(data) {
+  console.log("listArticles"+data)
+  return request({
+    url: '/crawler/article/list-quintessence',
+    method: 'get',
+    params: data
+  })
+}

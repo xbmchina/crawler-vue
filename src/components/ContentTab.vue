@@ -12,6 +12,9 @@
           <el-tab-pane label="技术文章">
             <technical-news />
           </el-tab-pane>
+          <el-tab-pane label="精华合集">
+            <quintessence />
+          </el-tab-pane>
         </el-tabs>
       </el-col>
     </el-row>
@@ -21,6 +24,7 @@
 import ToolKitTab from "./ToolKitTab.vue";
 import ArticleNews from "./ArticleNews.vue";
 import TechnicalNews from "./TechnicalNews.vue";
+import Quintessence from "./Quintessence.vue";
 
 export default {
   name: "ContentTab",
@@ -28,6 +32,7 @@ export default {
     ToolKitTab,
     ArticleNews,
     TechnicalNews,
+    Quintessence,
   },
   data() {
     return {};
