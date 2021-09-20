@@ -2,10 +2,15 @@
   <div class="stock-content">
     <el-row type="flex" class="row-bg" justify="center">
       <el-col :span="22">
-       <div>
+        <div>
           <h4>今日行情</h4>
-          <el-switch v-model="openWs" @change=changeOpenWs($event,openWs) active-color="#13ce66" inactive-color="#ff4949"></el-switch>
-       </div>
+          <el-switch
+            v-model="openWs"
+            @change="changeOpenWs($event, openWs)"
+            active-color="#13ce66"
+            inactive-color="#ff4949"
+          ></el-switch>
+        </div>
         <el-table
           :data="stockList"
           style="width: 100%"
@@ -33,7 +38,7 @@
 </template>
 <script>
 import { listAllStock } from "@/api/stock";
-import { Notification } from 'element-ui';
+import { Notification } from "element-ui";
 
 export default {
   name: "StockTab",
@@ -41,9 +46,14 @@ export default {
     this.getAllStockList();
   },
   methods: {
-    changeOpenWs(state){
-      if(state){
-        this.openSocket()
+    changeOpenWs(state) {
+      if (state) {
+        this.openSocket();
+      } else {
+        if (this.socket != null) {
+          this.socket.close();
+          this.socket = null;
+        }
       }
     },
     tableRowClassName({ rowIndex }) {
@@ -64,7 +74,7 @@ export default {
       });
     },
     openSocket() {
-      console.log("正在连接服务....")
+      console.log("正在连接服务....");
       if (typeof WebSocket == "undefined") {
         console.log("您的浏览器不支持WebSocket");
       } else {
@@ -92,10 +102,10 @@ export default {
         this.socket.onmessage = function (msg) {
           console.log(msg.data);
           //发现消息进入    开始处理前端触发逻辑
-            Notification({
-                title: '最新动态',
-                message: msg.data
-            });
+          Notification({
+            title: "最新动态",
+            message: msg.data,
+          });
         };
         //关闭事件
         this.socket.onclose = function () {
@@ -136,7 +146,7 @@ export default {
       userId: localStorage.getItem("X-Token"),
       toUserId: "2",
       content: "3",
-      openWs: false
+      openWs: false,
     };
   },
 };
