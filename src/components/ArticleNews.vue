@@ -126,7 +126,7 @@ export default {
       articleList: [],
       pageNum: 1,
       pageSize: 10,
-      sourceIds: "1,2",
+      sourceIds: "1,2,10,9",
       total: 0,
     };
   },
