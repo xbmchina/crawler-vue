@@ -78,7 +78,13 @@ export default {
 <style>
 .m-tooltip .el-link--inner {
   font-size: large;
+     color: #f5f7fa;
 }
+
+.m-tooltip .el-link.el-link--primary:hover {
+    color: #f5f7fa;
+}
+
 .background {
   width: 100%;
   height: 100%; /**宽高100%是为了图片铺满屏幕 */
@@ -101,4 +107,6 @@ export default {
   -o-background-size: cover;
   background-position: center 0;
 }
+
+
 </style>

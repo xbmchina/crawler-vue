@@ -30,9 +30,8 @@
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page.sync="pageNum"
-      :page-sizes="[10, 30, 50]"
       :page-size="10"
-      layout="total, sizes, prev, pager, next"
+      layout="total, prev, pager, next"
       :total="total"
     >
     </el-pagination>
