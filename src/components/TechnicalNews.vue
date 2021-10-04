@@ -87,7 +87,7 @@ export default {
       listArticles({
         pageNum,
         pageSize,
-        sourceIds,
+        sourceIds
       }).then((response) => {
         console.log(response.data.list);
         this.articleList = response.data.list;
@@ -125,8 +125,8 @@ export default {
       articleList: [],
       pageNum: 1,
       pageSize: 10,
-      sourceIds: "3,4,5,6,7,8",
-      total: 0,
+      sourceIds: "it",
+      total: 0
     };
   },
 };
