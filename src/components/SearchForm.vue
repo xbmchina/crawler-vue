@@ -19,6 +19,7 @@
               <el-option label="谷歌" value="1"></el-option>
               <el-option label="搜狗" value="2"></el-option>
               <el-option label="必应" value="3"></el-option>
+              <el-option label="百搜" value="4"></el-option>
             </el-select>
             <el-button
               slot="append"
@@ -50,6 +51,12 @@ export default {
   methods: {
     submitSearch() {
       if (this.searchKeyWord) {
+        if(this.searchEngine === "4"){
+          this.$router.push({
+            path:'/search-page/'+this.searchKeyWord
+          });
+          return;
+        }
         window.open(
           this.searchEngineList[this.searchEngine] + this.searchKeyWord,
           "_blank"

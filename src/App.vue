@@ -1,34 +1,11 @@
 <template>
-  <div id="app">
-    <drawer-tab />
-    <search-form />
-    <content-tab />
-  </div>
+  <router-view></router-view>
 </template>
-
 <script>
-import SearchForm from "./components/SearchForm.vue";
-import ContentTab from "./components/ContentTab.vue";
-import DrawerTab from "./components/DrawerTab.vue";
-
-
 export default {
-  name: "App",
-  components: {
-    SearchForm,
-    ContentTab,
-    DrawerTab,
-  },
+  name: "App"
 };
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  /* margin-top: 60px; */
-}
 </style>

@@ -48,3 +48,14 @@ export function listQuintessence(data) {
     params: data
   })
 }
+
+
+
+export function searchArticle(data) {
+  console.log("searchArticle"+data)
+  return request({
+    url: '/crawler/search/q',
+    method: 'get',
+    params: data
+  })
+}
